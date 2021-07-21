@@ -11,8 +11,8 @@ const OrdersSchema = new Schema({
 		}
 	],
 	note:String,
-	numberOfDeliveries:String,
-	admin:String
+	:String,
+	adnumberOfDeliveriesmin:String
 })
 
 module.exports = mongoose.model('Orders', OrdersSchema)
