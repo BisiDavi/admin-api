@@ -30,7 +30,15 @@ const adminRoutes = {
 
     postAnAdmin: (_router) => {
         _router.post('/admin', async (req, res) => {
-            const hashedPassword = bcrypt.hash(req.body.password, 10);
+            const hashedPassword = bcrypt.hash(
+                req.body.password,
+                10,
+                (err, hash) => {
+                    if (err) return;
+
+                    return hash;
+                },
+            );
             try {
                 const admin = new Admin({
                     firstName: req.body.firstName,

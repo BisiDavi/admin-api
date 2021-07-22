@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const Dispatcher = require('../models/dispatcher');
 
-const  dispatcherRoutes =  {
+const dispatcherRoutes = {
     getDispatchers: (_router) => {
         _router.get('/dispatchers', async (req, res) => {
             try {
@@ -15,7 +15,7 @@ const  dispatcherRoutes =  {
         });
     },
 
-     getDispatcher: (_router)  => {
+    getDispatcher: (_router) => {
         _router.get('/dispatchers/:id', async (req, res) => {
             try {
                 const dispatcher = await Dispatcher.findById({
@@ -30,9 +30,16 @@ const  dispatcherRoutes =  {
         });
     },
 
-     postDispatcher: (_router) => {
+    postDispatcher: (_router) => {
         _router.post('/dispatchers', async (req, res) => {
-            const hashedPassword = bcrypt.hash(req.body.password, 10);
+            const hashedPassword = bcrypt.hash(
+                req.body.password,
+                10,
+                (err, hash) => {
+                    if (err) return;
+                    return hash;
+                },
+            );
             try {
                 const dispatcher = new Dispatcher({
                     lastName: req.body.lastName,
@@ -56,7 +63,7 @@ const  dispatcherRoutes =  {
         });
     },
 
-    deleteDispatcher: (_router)  => {
+    deleteDispatcher: (_router) => {
         _router.delete('/order/:id', async (req, res) => {
             try {
                 await Dispatcher.deleteOne({ _id: req.params.id });
@@ -67,7 +74,6 @@ const  dispatcherRoutes =  {
                 res.send({ error, message: 'unable to delete order' });
             }
         });
-    }
-
-}
+    },
+};
 module.exports = dispatcherRoutes;
