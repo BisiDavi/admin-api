@@ -8,7 +8,7 @@ exports.login = async (req, res) => {
         const { email, password } = req.body;
         const checkEmail = await Admin.findOne({ email });
 
-        if (email === checkEmail.email) {
+        if (checkEmail !== null && email === checkEmail?.email) {
             let result = {};
             let status = 200;
             await Admin.findOne({ email }, (err, admin) => {
