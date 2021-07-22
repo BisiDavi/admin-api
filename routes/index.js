@@ -20,7 +20,7 @@ adminRoutes.postAnAdmin(router, validateToken);
 
 superAdminRoutes.getAllAdmin(router, validateToken);
 superAdminRoutes.getAnAdmin(router, validateToken);
-superAdminRoutes.postAnAdmin(router, validateToken);
+superAdminRoutes.postAnAdmin(router);
 
 orderRoutes.getOrders(router, validateToken);
 orderRoutes.getOrder(router, validateToken);
