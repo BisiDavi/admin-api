@@ -1,4 +1,5 @@
 const express = require('express');
+const validateToken = require('../utils/validateToken');
 const router = express.Router();
 
 const dispatcherRoutes = require('./dispatcher.routes');
@@ -26,6 +27,5 @@ storesRoutes.getStore(router);
 storesRoutes.postStore(router);
 storesRoutes.deleteStore(router);
 storesRoutes.editStore(router);
-
 
 module.exports = router;
