@@ -71,8 +71,10 @@ const storesRoutes = {
     deleteStore: (_router) => {
         _router.delete('/stores/:id', async (req, res) => {
             try {
-                await Stores.deleteOne({ _id: req.params.id });
-                res.status(204).send('deleted');
+                const deletedStore = await Stores.deleteOne({
+                    _id: req.params.id,
+                });
+                res.status(200).send({ deletedStore, message: 'deleted' });
             } catch (error) {
                 console.log('error', error);
                 res.status(error.status);
