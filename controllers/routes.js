@@ -1,6 +1,6 @@
 const express = require('express');
 const validateToken = require('../utils/validateToken').validateToken;
-v;
+
 const router = express.Router();
 
 const dispatcherRoutes = require('./dispatcher.routes');
