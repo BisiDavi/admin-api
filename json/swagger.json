@@ -1,0 +1,45 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "CloudMall-Instadrop-Admin-API",
+        "description": "An admin api that manage dispatchers",
+        "version": "1.0.0",
+        "contact": {
+            "name": "CloudMall Africa",
+            "email": "info@cloudmall.africa",
+            "url": "www.cloudmall.africa"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:5000",
+            "description": "Local Server"
+        },
+        {
+            "url": "https://cloudmall-instadrop-admin-api.herokuapp.com/",
+            "description": "Production Server"
+        }
+    ],
+    "tags": [
+        { "name": "Admin CRUD Operations" },
+        { "name": "Dispatcher CRUD Operations" },
+        { "name": "Orders CRUD Operations" },
+        { "name": "Stores CRUD Operations" }
+    ],
+    "get": {
+        "tags": ["Admin CRUD operations"],
+        "description": "Get all Admins",
+        "operationId": "getAdmins",
+        "parameters": [],
+        "responses": {
+            "200": {
+                "description": "Todos were obtained",
+                "content": {
+                    "application/json": {
+                        "schema": {}
+                    }
+                }
+            }
+        }
+    }
+}
