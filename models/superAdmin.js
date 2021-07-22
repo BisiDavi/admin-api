@@ -11,7 +11,7 @@ const SuperAdminSchema = new Schema({
     userName: String,
     password: String,
     role: { type: String, default: 'admin' },
-    isSuperAdmin: true,
+    isSuperAdmin: { type: Boolean, default: true },
 });
 
 SuperAdminSchema.pre('save', function (next) {
