@@ -10,7 +10,7 @@ const AdminSchema = new Schema({
     whatsappNumber: String,
     userName: String,
     password: String,
-    role: 'admin',
+    role: { type: String, default: 'admin' },
 });
 
 AdminSchema.pre('save', function (next) {

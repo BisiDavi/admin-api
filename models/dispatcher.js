@@ -15,7 +15,7 @@ const DispatcherSchema = new Schema({
     fleetColor: String,
     fleetPlateNumber: String,
     fleetOwner: String,
-		role:'dispatcher'
+    role: { type: String, default: 'dispatcher' },
 });
 
 DispatcherSchema.pre('save', function (next) {
