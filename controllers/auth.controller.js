@@ -12,8 +12,9 @@ exports.login = async (req, res) => {
         console.log('checkEmail', checkEmail);
         console.log('req.body email', email);
 
-        if (email === checkEmail) {
+        if (email === checkEmail.email) {
             await Admin.findOne({ email }, (err, admin) => {
+                console.log('admin', admin);
                 if (!err && admin) {
                     bcrypt.compare(password, admin.password).then((match) => {
                         if (match) {
@@ -65,7 +66,7 @@ exports.login = async (req, res) => {
 
                                 result.token = token;
                                 result.status = status;
-                                result.result = admin;
+                                result.result = superAdmin;
                                 res.status(status).send(result);
                             }
                         });
