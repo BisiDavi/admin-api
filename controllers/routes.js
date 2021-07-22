@@ -1,5 +1,5 @@
 const express = require('express');
-const validateToken = require('../utils/validateToken');
+const validateToken = require('../utils/validateToken').validateToken;v
 const router = express.Router();
 
 const dispatcherRoutes = require('./dispatcher.routes');
@@ -7,7 +7,7 @@ const adminRoutes = require('./admin.routes');
 const orderRoutes = require('./orders.routes');
 const storesRoutes = require('./stores.routes');
 
-dispatcherRoutes.getDispatchers(router);
+dispatcherRoutes.getDispatchers(router, validateToken);
 dispatcherRoutes.getDispatcher(router);
 dispatcherRoutes.postDispatcher(router);
 dispatcherRoutes.deleteDispatcher(router);

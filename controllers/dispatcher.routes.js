@@ -1,7 +1,7 @@
 const Dispatcher = require('../models/dispatcher');
 
 const dispatcherRoutes = {
-    getDispatchers: (_router) => {
+    getDispatchers: (_router, _validateToken) => {
         _router.get('/dispatchers', async (req, res) => {
             try {
                 const allDispatchers = await Dispatcher.find();
