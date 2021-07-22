@@ -5,14 +5,12 @@ const SuperAdmin = require('../models/superAdmin.model');
 
 exports.login = async (req, res) => {
     try {
-        let result = {};
-        let status = 200;
         const { email, password } = req.body;
         const checkEmail = await Admin.findOne({ email });
-        console.log('checkEmail', checkEmail);
-        console.log('req.body email', email);
 
         if (email === checkEmail.email) {
+            let result = {};
+            let status = 200;
             await Admin.findOne({ email }, (err, admin) => {
                 console.log('admin', admin);
                 if (!err && admin) {
@@ -28,7 +26,7 @@ exports.login = async (req, res) => {
                             };
                             const secret = process.env.JWT_SECRET;
                             const token = jwt.sign(payload, secret, options);
-
+                            console.log('admin token', token);
                             result.token = token;
                             result.status = status;
                             result.result = admin;
@@ -43,7 +41,10 @@ exports.login = async (req, res) => {
                 res.status(status).send(result);
             });
         } else {
+            let result = {};
+            let status = 200;
             await SuperAdmin.findOne({ email }, (err, superAdmin) => {
+                console.log('superAdmin', superAdmin);
                 if (!err && superAdmin) {
                     bcrypt
                         .compare(password, superAdmin.password)
@@ -63,7 +64,7 @@ exports.login = async (req, res) => {
                                     secret,
                                     options,
                                 );
-
+                                console.log('super-admin token', token);
                                 result.token = token;
                                 result.status = status;
                                 result.result = superAdmin;
