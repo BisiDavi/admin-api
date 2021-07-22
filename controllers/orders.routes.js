@@ -1,7 +1,7 @@
 const Orders = require('../models/order');
 
-function orderRoutes() {
-    function getOrders(_router) {
+const orderRoutes = {
+    getOrders: (_router) => {
         _router.get('/orders', async (req, res) => {
             try {
                 const allOrders = await Orders.find();
@@ -12,9 +12,9 @@ function orderRoutes() {
                 res.send({ error: error });
             }
         });
-    }
+    },
 
-    function getOrder(_router) {
+    getOrder: (_router) => {
         _router.get('/orders/:id', async (req, res) => {
             try {
                 const order = await Orders.findById({ _id: req.params.id });
@@ -25,9 +25,9 @@ function orderRoutes() {
                 res.send({ error: error });
             }
         });
-    }
+    },
 
-    function postOrder(_router) {
+    postOrder: (_router) => {
         _router.post('/orders', async (req, res) => {
             try {
                 const order = new Orders({
@@ -47,9 +47,9 @@ function orderRoutes() {
                 res.send({ error, message: 'unable to create an order' });
             }
         });
-    }
+    },
 
-    function editOrder(_router) {
+    editOrder: (_router) => {
         _router.patch('/order/:id', async (req, res) => {
             try {
                 const orders = await Orders.findOne({ _id: req.params.id });
@@ -79,9 +79,9 @@ function orderRoutes() {
                 res.send({ error, message: 'unable to edit order' });
             }
         });
-    }
+    },
 
-    function deleteOrder(_router) {
+    deleteOrder: (_router) => {
         _router.delete('/order/:id', async (req, res) => {
             try {
                 await Order.deleteOne({ _id: req.params.id });
@@ -92,14 +92,6 @@ function orderRoutes() {
                 res.send({ error, message: 'unable to delete order' });
             }
         });
-    }
-
-    return {
-        getOrders,
-        getOrder,
-        postOrder,
-        editOrder,
-        deleteOrder,
-    };
-}
+    },
+};
 module.exports = orderRoutes;

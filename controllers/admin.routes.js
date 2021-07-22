@@ -1,8 +1,8 @@
 const bcrypt = require('bcrypt');
 const Admin = require('../models/admin');
 
-function adminRoutes() {
-    function getAllAdmin(_router) {
+const adminRoutes = {
+    getAllAdmin: (_router) => {
         _router.get('/admin', async (req, res) => {
             try {
                 const allAdmin = await Admin.find();
@@ -13,9 +13,9 @@ function adminRoutes() {
                 res.send({ error: error });
             }
         });
-    }
+    },
 
-    function getAnAdmin(_router) {
+    getAnAdmin: (_router) => {
         _router.get('/admin/:id', async (req, res) => {
             try {
                 const anAdmin = await Admin.findById({ _id: req.params.id });
@@ -26,9 +26,9 @@ function adminRoutes() {
                 res.send({ error: error });
             }
         });
-    }
+    },
 
-    function postAnAdmin(_router) {
+    postAnAdmin: (_router) => {
         _router.post('/admin', async (req, res) => {
             const hashedPassword = bcrypt.hash(req.body.password, 10);
             try {
@@ -49,13 +49,7 @@ function adminRoutes() {
                 res.send({ error, message: 'unable to create an admin' });
             }
         });
-    }
-
-    return {
-        getAllAdmin,
-        getAnAdmin,
-        postAnAdmin,
-    };
-}
+    },
+};
 
 module.exports = adminRoutes;

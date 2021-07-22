@@ -1,8 +1,8 @@
 const bcrypt = require('bcrypt');
 const Dispatcher = require('../models/dispatcher');
 
-function dispatcherRoutes() {
-    function getDispatchers(_router) {
+const  dispatcherRoutes =  {
+    getDispatchers: (_router) => {
         _router.get('/dispatchers', async (req, res) => {
             try {
                 const allDispatchers = await Dispatcher.find();
@@ -13,9 +13,9 @@ function dispatcherRoutes() {
                 res.send({ error: error });
             }
         });
-    }
+    },
 
-    function getDispatcher(_router) {
+     getDispatcher: (_router)  => {
         _router.get('/dispatchers/:id', async (req, res) => {
             try {
                 const dispatcher = await Dispatcher.findById({
@@ -28,9 +28,9 @@ function dispatcherRoutes() {
                 res.send({ error: error });
             }
         });
-    }
+    },
 
-    function postDispatcher(_router) {
+     postDispatcher: (_router) => {
         _router.post('/dispatchers', async (req, res) => {
             const hashedPassword = bcrypt.hash(req.body.password, 10);
             try {
@@ -54,9 +54,9 @@ function dispatcherRoutes() {
                 res.send({ error, message: 'unable to create an order' });
             }
         });
-    }
+    },
 
-    function deleteDispatcher(_router) {
+    deleteDispatcher: (_router)  => {
         _router.delete('/order/:id', async (req, res) => {
             try {
                 await Dispatcher.deleteOne({ _id: req.params.id });
@@ -69,11 +69,5 @@ function dispatcherRoutes() {
         });
     }
 
-    return {
-        getDispatchers,
-        getDispatcher,
-        postDispatcher,
-        deleteDispatcher,
-    };
 }
 module.exports = dispatcherRoutes;

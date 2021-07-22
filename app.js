@@ -7,7 +7,7 @@ const appRoutes = require('./controllers/routes');
 dotenv.config();
 const app = express();
 
-app.use(cors);
+app.use(cors());
 
 app.use(express.json());
 
@@ -20,7 +20,14 @@ mongoose
     })
     .then(() => {
         console.log('mongoose is connected!');
+    })
+    .catch((error) => {
+        console.log('error', error);
     });
+
+app.get('/', (req, res) => {
+    res.send('Hello world');
+});
 
 app.use('/api', appRoutes);
 

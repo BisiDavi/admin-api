@@ -1,7 +1,7 @@
 const Stores = require('../models/stores');
 
-function storesRoutes() {
-    function getStores(_router) {
+const storesRoutes = {
+    getStores: (_router) => {
         _router.get('/stores', async (req, res) => {
             try {
                 const stores = await Stores.find();
@@ -12,9 +12,9 @@ function storesRoutes() {
                 res.send({ error: error });
             }
         });
-    }
+    },
 
-    function getStore(_router) {
+    getStore: (_router) => {
         _router.get('/store/:id', async (req, res) => {
             try {
                 const store = await Stores.findById({ _id: req.params.id });
@@ -25,9 +25,9 @@ function storesRoutes() {
                 res.send({ error: error });
             }
         });
-    }
+    },
 
-    function postStore(_router) {
+    postStore: (_router) => {
         _router.post('/store', async (req, res) => {
             try {
                 const store = new Stores({
@@ -43,9 +43,9 @@ function storesRoutes() {
                 res.send({ error, message: 'unable to create an admin' });
             }
         });
-    }
+    },
 
-    function editStore(_router) {
+    editStore: (_router) => {
         _router.patch('/store/:id', async (req, res) => {
             try {
                 const store = await Stores.findByOne({ _id: req.params.id });
@@ -66,9 +66,9 @@ function storesRoutes() {
                 res.send({ error, message: 'unable to edit store' });
             }
         });
-    }
+    },
 
-    function deleteStore(_router) {
+    deleteStore: (_router) => {
         _router.delete('/store/:id', async (req, res) => {
             try {
                 await Stores.deleteOne({ _id: req.params.id });
@@ -79,14 +79,7 @@ function storesRoutes() {
                 res.send({ error, message: 'unable to delete store' });
             }
         });
-    }
-    return {
-        getStores,
-        getStore,
-        postStore,
-        deleteStore,
-        editStore,
-    };
-}
+    },
+};
 
 module.exports = storesRoutes;

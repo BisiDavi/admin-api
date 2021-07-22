@@ -20,10 +20,10 @@ orderRoutes.postOrder(router);
 orderRoutes.editOrder(router);
 orderRoutes.deleteOrder(router);
 
-storesRoutes.getStores(_router);
-storesRoutes.getStore(_router);
-storesRoutes.postStore(_router);
-storesRoutes.deleteStore(_router);
-storesRoutes.editStore(_router);
+storesRoutes.getStores(router);
+storesRoutes.getStore(router);
+storesRoutes.postStore(router);
+storesRoutes.deleteStore(router);
+storesRoutes.editStore(router);
 
 module.exports = router;
