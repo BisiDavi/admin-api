@@ -34,9 +34,8 @@ exports.login = async (req, res) => {
                             console.log('admin token', token);
                             console.log('super admin result', result);
                             result.token = token;
-                            result.status = status;
                             result.data = admin;
-                            res.status(status).send(result);
+                            res.send(result);
                         }
                     });
                 } else {
@@ -72,9 +71,8 @@ exports.login = async (req, res) => {
                                 console.log('admin token', token);
                                 console.log('super admin result', result);
                                 result.token = token;
-                                result.status = status;
                                 result.data = dispatcher;
-                                res.status(status).send(result);
+                                res.send(result);
                             }
                         });
                 } else {
@@ -119,6 +117,6 @@ exports.login = async (req, res) => {
         }
     } catch (error) {
         console.log('error', error);
-        res.status(status).send(error);
+        res.send(error);
     }
 };
