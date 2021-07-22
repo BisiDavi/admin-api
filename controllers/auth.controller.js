@@ -66,10 +66,10 @@ exports.login = async (req, res) => {
                                     options,
                                 );
                                 console.log('super-admin token', token);
-                                console.log('super admin result', result);
                                 result.token = token;
                                 result.status = status;
                                 result.result = superAdmin;
+                                console.log('super admin result', result);
                                 res.status(status).send(result);
                             }
                         });
