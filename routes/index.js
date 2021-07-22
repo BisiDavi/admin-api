@@ -13,14 +13,17 @@ dispatcherRoutes.getDispatchers(router, validateToken);
 dispatcherRoutes.getDispatcher(router, validateToken);
 dispatcherRoutes.postDispatcher(router, validateToken);
 dispatcherRoutes.deleteDispatcher(router, validateToken);
+dispatcherRoutes.editDispatcher(router, validateToken);
 
 adminRoutes.getAllAdmin(router, validateToken);
 adminRoutes.getAnAdmin(router, validateToken);
 adminRoutes.postAnAdmin(router, validateToken);
+adminRoutes.editAdmin(router, validateToken);
 
 superAdminRoutes.getAllAdmin(router, validateToken);
 superAdminRoutes.getAnAdmin(router, validateToken);
 superAdminRoutes.postAnAdmin(router);
+superAdminRoutes.editAdmin(router, validateToken);
 
 orderRoutes.getOrders(router, validateToken);
 orderRoutes.getOrder(router, validateToken);

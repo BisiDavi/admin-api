@@ -69,6 +69,8 @@ exports.edit = async (req, res) => {
     } catch (error) {
         console.log('error', error);
         res.status(error.status);
-        res.send({ error, message: 'unable to edit super admin' });
+        res.send({ error, message: 'unable to edit admin' });
     }
 };
+
+

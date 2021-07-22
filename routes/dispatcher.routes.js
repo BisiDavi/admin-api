@@ -1,4 +1,5 @@
 const dispatcherController = require('../controllers/dispatcher.controller');
+const validateToken = require('../utils/validateToken');
 
 const dispatcherRoutes = {
     getDispatchers: (_router, validateToken) => {
@@ -18,6 +19,14 @@ const dispatcherRoutes = {
             '/dispatchers',
             validateToken,
             dispatcherController.create,
+        );
+    },
+
+    editDispatcher: (_router, validateToken) => {
+        _router.post(
+            '/dispatchers/:id',
+            validateToken,
+            dispatcherController.edit,
         );
     },
 
