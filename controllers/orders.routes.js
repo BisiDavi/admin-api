@@ -50,7 +50,7 @@ const orderRoutes = {
     },
 
     editOrder: (_router) => {
-        _router.patch('/order/:id', async (req, res) => {
+        _router.patch('/orders/:id', async (req, res) => {
             try {
                 const orders = await Orders.findOne({ _id: req.params.id });
                 if (req.body.pickupVendor) {
@@ -82,10 +82,10 @@ const orderRoutes = {
     },
 
     deleteOrder: (_router) => {
-        _router.delete('/order/:id', async (req, res) => {
+        _router.delete('/orders/:id', async (req, res) => {
             try {
                 await Order.deleteOne({ _id: req.params.id });
-                res.status(204).send();
+                res.status(204).send('deleted');
             } catch (error) {
                 console.log('error', error);
                 res.status(error.status);

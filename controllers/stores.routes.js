@@ -15,7 +15,7 @@ const storesRoutes = {
     },
 
     getStore: (_router) => {
-        _router.get('/store/:id', async (req, res) => {
+        _router.get('/stores/:id', async (req, res) => {
             try {
                 const store = await Stores.findById({ _id: req.params.id });
                 res.send(store);
@@ -46,9 +46,9 @@ const storesRoutes = {
     },
 
     editStore: (_router) => {
-        _router.patch('/store/:id', async (req, res) => {
+        _router.patch('/stores/:id', async (req, res) => {
             try {
-                const store = await Stores.findByOne({ _id: req.params.id });
+                const store = await Stores.findOne({ _id: req.params.id });
                 if (req.body.vendorName) {
                     store.vendorName = req.body.vendorName;
                 }
@@ -69,10 +69,10 @@ const storesRoutes = {
     },
 
     deleteStore: (_router) => {
-        _router.delete('/store/:id', async (req, res) => {
+        _router.delete('/stores/:id', async (req, res) => {
             try {
                 await Stores.deleteOne({ _id: req.params.id });
-                res.status(204).send();
+                res.status(204).send('deleted');
             } catch (error) {
                 console.log('error', error);
                 res.status(error.status);

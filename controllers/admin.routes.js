@@ -3,7 +3,7 @@ const Admin = require('../models/admin');
 
 const adminRoutes = {
     getAllAdmin: (_router) => {
-        _router.get('/admin', async (req, res) => {
+        _router.get('/admins', async (req, res) => {
             try {
                 const allAdmin = await Admin.find();
                 res.send(allAdmin);
@@ -16,7 +16,7 @@ const adminRoutes = {
     },
 
     getAnAdmin: (_router) => {
-        _router.get('/admin/:id', async (req, res) => {
+        _router.get('/admins/:id', async (req, res) => {
             try {
                 const anAdmin = await Admin.findById({ _id: req.params.id });
                 res.send(anAdmin);
@@ -29,7 +29,7 @@ const adminRoutes = {
     },
 
     postAnAdmin: (_router) => {
-        _router.post('/admin', async (req, res) => {
+        _router.post('/admins', async (req, res) => {
             const hashedPassword = bcrypt.hash(
                 req.body.password,
                 10,

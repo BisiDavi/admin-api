@@ -64,7 +64,7 @@ const dispatcherRoutes = {
     },
 
     deleteDispatcher: (_router) => {
-        _router.delete('/order/:id', async (req, res) => {
+        _router.delete('/dispatchers/:id', async (req, res) => {
             try {
                 await Dispatcher.deleteOne({ _id: req.params.id });
                 res.status(204).send();
