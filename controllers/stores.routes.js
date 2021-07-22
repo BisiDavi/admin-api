@@ -28,7 +28,7 @@ const storesRoutes = {
     },
 
     postStore: (_router) => {
-        _router.post('/store', async (req, res) => {
+        _router.post('/stores', async (req, res) => {
             try {
                 const store = new Stores({
                     vendorName: req.body.vendorName,
