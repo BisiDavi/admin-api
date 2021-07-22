@@ -32,14 +32,6 @@ const dispatcherRoutes = {
 
     postDispatcher: (_router) => {
         _router.post('/dispatchers', async (req, res) => {
-            const hashedPassword = bcrypt.hash(
-                req.body.password,
-                10,
-                (err, hash) => {
-                    if (err) return;
-                    return hash;
-                },
-            );
             try {
                 const dispatcher = new Dispatcher({
                     lastName: req.body.lastName,
@@ -47,7 +39,7 @@ const dispatcherRoutes = {
                     phoneNumber: req.body.phoneNumber,
                     whatsappNumber: req.body.whatsappNumber,
                     userName: req.body.userName,
-                    password: hashedPassword,
+                    password: req.body.password,
                     fleetBrand: req.body.fleetBrand,
                     fleetModel: req.body.fleetModel,
                     fleetColor: req.body.fleetColor,

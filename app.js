@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.use('/api', appRoutes);
+app.use('/api/v1/', appRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

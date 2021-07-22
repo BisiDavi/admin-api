@@ -30,15 +30,6 @@ const adminRoutes = {
 
     postAnAdmin: (_router) => {
         _router.post('/admins', async (req, res) => {
-            const hashedPassword = bcrypt.hash(
-                req.body.password,
-                10,
-                (err, hash) => {
-                    if (err) return;
-
-                    return hash;
-                },
-            );
             try {
                 const admin = new Admin({
                     firstName: req.body.firstName,
@@ -47,7 +38,7 @@ const adminRoutes = {
                     phoneNumber: req.body.phoneNumber,
                     whatsappNumber: req.body.whatsappNumber,
                     userName: req.body.userName,
-                    password: hashedPassword,
+                    password: req.body.password,
                 });
                 await admin.save();
                 res.send(admin);
