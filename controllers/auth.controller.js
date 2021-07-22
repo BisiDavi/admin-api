@@ -27,6 +27,7 @@ exports.login = async (req, res) => {
                             const secret = process.env.JWT_SECRET;
                             const token = jwt.sign(payload, secret, options);
                             console.log('admin token', token);
+                            console.log('super admin result', result);
                             result.token = token;
                             result.status = status;
                             result.result = admin;
@@ -65,6 +66,7 @@ exports.login = async (req, res) => {
                                     options,
                                 );
                                 console.log('super-admin token', token);
+                                console.log('super admin result', result);
                                 result.token = token;
                                 result.status = status;
                                 result.result = superAdmin;
