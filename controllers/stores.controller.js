@@ -1,4 +1,4 @@
-const Stores = require('../models/stores');
+const Stores = require('../models/stores.model');
 
 exports.find = async (req, res) => {
     try {

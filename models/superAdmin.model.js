@@ -10,6 +10,7 @@ const SuperAdminSchema = new Schema({
     whatsappNumber: String,
     userName: String,
     password: String,
+    orderQuota: { type: String, default: null },
     role: { type: String, default: 'admin' },
     isSuperAdmin: { type: Boolean, default: true },
 });

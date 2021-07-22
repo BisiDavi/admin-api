@@ -12,6 +12,14 @@ const OrdersSchema = new Schema({
         },
     ],
     note: String,
+    status: {
+        type: String,
+        default: null,
+    },
+    assignedDispatcherID: {
+        type: String,
+        default: null,
+    },
     numberOfDeliveries: String,
     admin: String,
 });

@@ -12,6 +12,9 @@ const adminRoutes = {
     postAnAdmin: (_router, validateToken) => {
         _router.post('/admins', validateToken, adminController.create);
     },
+		editAdmin: (_router, validateToken) => {
+			_router.patch('/admins/:id', validateToken, adminController.ed)
+		}
 };
 
 module.exports = adminRoutes;

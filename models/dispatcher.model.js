@@ -15,6 +15,10 @@ const DispatcherSchema = new Schema({
     fleetColor: String,
     fleetPlateNumber: String,
     fleetOwner: String,
+    location: {
+        latitude: { type: String, default: null },
+        longitude: { type: String, default: null },
+    },
     role: { type: String, default: 'dispatcher' },
 });
 

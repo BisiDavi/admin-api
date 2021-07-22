@@ -1,4 +1,4 @@
-const Dispatcher = require('../models/dispatcher');
+const Dispatcher = require('../models/dispatcher.model');
 
 exports.find = async (req, res) => {
     try {

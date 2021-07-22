@@ -1,4 +1,4 @@
-const Orders = require('../models/order');
+const Orders = require('../models/order.model');
 
 exports.find = async (req, res) => {
     try {
@@ -54,8 +54,17 @@ exports.patch = async (req, res) => {
         if (req.body.pickupDescription) {
             orders.pickupDescription = req.body.pickupDescription;
         }
+        if (req.body.deliveryDetails) {
+            orders.deliveryDetails = req.body.deliveryDetails;
+        }
         if (req.body.note) {
             orders.note = req.body.note;
+        }
+        if (req.body.status) {
+            orders.status = req.body.status;
+        }
+        if (req.body.assignedDispatcherID) {
+            orders.assignedDispatcherID = req.body.assignedDispatcherID;
         }
         if (req.body.numberOfDeliveries) {
             orders.numberOfDeliveries = req.body.numberOfDeliveries;

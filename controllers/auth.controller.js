@@ -1,12 +1,12 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const Admin = require('../models/admin');
-const SuperAdmin = require('../models/superAdmin');
+const Admin = require('../models/admin.model');
+const SuperAdmin = require('../models/superAdmin.model');
 
 exports.login = async (req, res) => {
-    let result = {};
-    let status = 200;
     try {
+        let result = {};
+        let status = 200;
         const { email, password } = req.body;
         Admin.findOne({ email }, (err, admin) => {
             if (!err && admin) {
