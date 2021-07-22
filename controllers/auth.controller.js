@@ -1,17 +1,23 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Admin = require('../models/admin.model');
+const Dispatcher = require('../models/dispatcher.model');
 const SuperAdmin = require('../models/superAdmin.model');
 
 exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
-        const checkEmail = await Admin.findOne({ email });
+        const isAdmin = await Admin.findOne({ email });
+        const isSuperAdmin = await SuperAdmin.findOne({ email });
+        const isDispatcher = await Dispatcher.findOne({ email });
 
-        if (checkEmail !== null && email === checkEmail?.email) {
-            let result = {};
+        let result = {};
+        if (
+            isAdmin !== null &&
+            isSuperAdmin === null &&
+            email === isAdmin?.email
+        ) {
             await Admin.findOne({ email }, (err, admin) => {
-                console.log('admin', admin);
                 if (!err && admin) {
                     bcrypt.compare(password, admin.password).then((match) => {
                         if (match) {
@@ -38,10 +44,46 @@ exports.login = async (req, res) => {
                     res.send(err);
                 }
             });
+        } else if (
+            isAdmin === null &&
+            isSuperAdmin === null &&
+            isDispatcher !== null
+        ) {
+            await Dispatcher.findOne({ email }, (err, dispatcher) => {
+                if (!err && dispatcher) {
+                    bcrypt
+                        .compare(password, dispatcher.password)
+                        .then((match) => {
+                            if (match) {
+                                const payload = {
+                                    dispatcher: dispatcher.email,
+                                    message: 'logged in as a dispatcher',
+                                };
+                                const options = {
+                                    expiresIn: '2d',
+                                    issuer: 'https://cloudmall.africa',
+                                };
+                                const secret = process.env.JWT_SECRET;
+                                const token = jwt.sign(
+                                    payload,
+                                    secret,
+                                    options,
+                                );
+                                console.log('admin token', token);
+                                console.log('super admin result', result);
+                                result.token = token;
+                                result.status = status;
+                                result.data = dispatcher;
+                                res.status(status).send(result);
+                            }
+                        });
+                } else {
+                    result.error = 'Authentication error as an admin';
+                    res.send(err);
+                }
+            });
         } else {
-            let result = {};
             await SuperAdmin.findOne({ email }, (err, superAdmin) => {
-                console.log('superAdmin', superAdmin);
                 if (!err && superAdmin) {
                     bcrypt
                         .compare(password, superAdmin.password)
@@ -49,7 +91,7 @@ exports.login = async (req, res) => {
                             if (match) {
                                 const payload = {
                                     superAdmin: superAdmin.email,
-                                    message: 'logged in as super admin',
+                                    message: 'logged in as a super admin',
                                 };
                                 const options = {
                                     expiresIn: '2d',
