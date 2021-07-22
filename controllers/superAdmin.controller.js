@@ -1,8 +1,8 @@
-const Admin = require('../models/admin');
+const superAdmin = require('../models/superAdmin');
 
 exports.find = async (req, res) => {
     try {
-        const allAdmin = await Admin.find();
+        const allAdmin = await superAdmin.find();
         res.send(allAdmin);
     } catch (error) {
         console.log('error', error);
@@ -13,7 +13,7 @@ exports.find = async (req, res) => {
 
 exports.findById = async (req, res) => {
     try {
-        const anAdmin = await Admin.findById({ _id: req.params.id });
+        const anAdmin = await superAdmin.findById({ _id: req.params.id });
         res.send(anAdmin);
     } catch (error) {
         console.log('error', error);
@@ -24,7 +24,7 @@ exports.findById = async (req, res) => {
 
 exports.create = async (req, res) => {
     try {
-        const admin = new Admin({
+        const superAdmin = new superAdmin({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,
@@ -33,8 +33,8 @@ exports.create = async (req, res) => {
             userName: req.body.userName,
             password: req.body.password,
         });
-        await admin.save();
-        res.send(admin);
+        await superAdmin.save();
+        res.send(superAdmin);
     } catch (error) {
         console.log('error', error);
         res.status(error.status);
