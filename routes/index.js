@@ -22,8 +22,8 @@ adminRoutes.editAdmin(router, validateToken);
 
 superAdminRoutes.getAllAdmin(router, validateToken);
 superAdminRoutes.getAnAdmin(router, validateToken);
-superAdminRoutes.postAnAdmin(router);
 superAdminRoutes.editAdmin(router, validateToken);
+superAdminRoutes.postAnAdmin(router);
 
 orderRoutes.getOrders(router, validateToken);
 orderRoutes.getOrder(router, validateToken);

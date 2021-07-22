@@ -65,9 +65,7 @@ exports.login = async (req, res) => {
             res.status(status).send(result);
         });
     } catch (error) {
-        status = 500;
-        result.status = status;
-        result.error = error;
-        res.status(status).send(result);
+        console.log('error', error);
+        res.status(status).send(error);
     }
 };
