@@ -1,9 +1,10 @@
 const Stores = require('../models/stores');
 
 const storesRoutes = {
-    getStores: (_router) => {
+    getStores: (_router, _validateToken) => {
         _router.get('/stores', async (req, res) => {
             try {
+                _validateToken();
                 const stores = await Stores.find();
                 res.send(stores);
             } catch (error) {
@@ -14,9 +15,10 @@ const storesRoutes = {
         });
     },
 
-    getStore: (_router) => {
+    getStore: (_router, _validateToken) => {
         _router.get('/stores/:id', async (req, res) => {
             try {
+                _validateToken();
                 const store = await Stores.findById({ _id: req.params.id });
                 res.send(store);
             } catch (error) {
@@ -27,9 +29,10 @@ const storesRoutes = {
         });
     },
 
-    postStore: (_router) => {
+    postStore: (_router, _validateToken) => {
         _router.post('/stores', async (req, res) => {
             try {
+                _validateToken();
                 const store = new Stores({
                     vendorName: req.body.vendorName,
                     address: req.body.address,
@@ -45,9 +48,10 @@ const storesRoutes = {
         });
     },
 
-    editStore: (_router) => {
+    editStore: (_router, _validateToken) => {
         _router.patch('/stores/:id', async (req, res) => {
             try {
+                _validateToken();
                 const store = await Stores.findOne({ _id: req.params.id });
                 if (req.body.vendorName) {
                     store.vendorName = req.body.vendorName;
@@ -68,9 +72,10 @@ const storesRoutes = {
         });
     },
 
-    deleteStore: (_router) => {
+    deleteStore: (_router, _validateToken) => {
         _router.delete('/stores/:id', async (req, res) => {
             try {
+                _validateToken();
                 const deletedStore = await Stores.deleteOne({
                     _id: req.params.id,
                 });

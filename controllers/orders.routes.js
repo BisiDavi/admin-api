@@ -1,9 +1,10 @@
 const Orders = require('../models/order');
 
 const orderRoutes = {
-    getOrders: (_router) => {
+    getOrders: (_router, _validateToken) => {
         _router.get('/orders', async (req, res) => {
             try {
+                _validateToken();
                 const allOrders = await Orders.find();
                 res.send(allOrders);
             } catch (error) {
@@ -14,9 +15,10 @@ const orderRoutes = {
         });
     },
 
-    getOrder: (_router) => {
+    getOrder: (_router, _validateToken) => {
         _router.get('/orders/:id', async (req, res) => {
             try {
+                _validateToken();
                 const order = await Orders.findById({ _id: req.params.id });
                 res.send(order);
             } catch (error) {
@@ -27,9 +29,10 @@ const orderRoutes = {
         });
     },
 
-    postOrder: (_router) => {
+    postOrder: (_router, _validateToken) => {
         _router.post('/orders', async (req, res) => {
             try {
+                _validateToken();
                 const order = new Orders({
                     pickupVendor: req.body.pickupVendor,
                     pickupContact: req.body.pickupContact,
@@ -51,6 +54,7 @@ const orderRoutes = {
 
     editOrder: (_router) => {
         _router.patch('/orders/:id', async (req, res) => {
+            _validateToken();
             try {
                 const orders = await Orders.findOne({ _id: req.params.id });
                 if (req.body.pickupVendor) {
@@ -81,9 +85,10 @@ const orderRoutes = {
         });
     },
 
-    deleteOrder: (_router) => {
+    deleteOrder: (_router, _validateToken) => {
         _router.delete('/orders/:id', async (req, res) => {
             try {
+                _validateToken();
                 await Order.deleteOne({ _id: req.params.id });
                 res.status(204).send('deleted');
             } catch (error) {
