@@ -1,4 +1,3 @@
-const bcrypt = require('bcrypt');
 const Admin = require('../models/admin');
 
 const adminRoutes = {

@@ -1,4 +1,3 @@
-const bcrypt = require('bcrypt');
 const Dispatcher = require('../models/dispatcher');
 
 const dispatcherRoutes = {
