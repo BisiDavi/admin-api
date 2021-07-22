@@ -23,7 +23,6 @@ exports.login = async (req, res) => {
                         if (match) {
                             const payload = {
                                 admin: admin.email,
-                                message: 'logged in as an admin',
                             };
                             const options = {
                                 expiresIn: '2d',
@@ -34,6 +33,7 @@ exports.login = async (req, res) => {
                             console.log('admin token', token);
                             console.log('super admin result', result);
                             result.token = token;
+                            result.message = 'logged in as an admin';
                             result.data = admin;
                             res.send(result);
                         }
@@ -56,7 +56,6 @@ exports.login = async (req, res) => {
                             if (match) {
                                 const payload = {
                                     dispatcher: dispatcher.email,
-                                    message: 'logged in as a dispatcher',
                                 };
                                 const options = {
                                     expiresIn: '2d',
@@ -70,6 +69,7 @@ exports.login = async (req, res) => {
                                 );
                                 console.log('admin token', token);
                                 console.log('super admin result', result);
+                                result.message = 'logged in as a dispatcher';
                                 result.token = token;
                                 result.data = dispatcher;
                                 res.send(result);

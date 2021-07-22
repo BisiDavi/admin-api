@@ -14,14 +14,18 @@ const OrdersSchema = new Schema({
     note: String,
     status: {
         type: String,
-        default: null,
+        enum: ['PENDING', 'ACTIVE', 'DELIVERED'],
+        default: 'PENDING',
     },
     assignedDispatcherID: {
         type: String,
         default: null,
     },
     numberOfDeliveries: String,
-    admin: String,
+    admin: {
+        type: Schema.Types.ObjectId,
+        required: true,
+    },
 });
 
 module.exports = mongoose.model('Orders', OrdersSchema);

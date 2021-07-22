@@ -30,6 +30,10 @@ orderRoutes.getOrder(router, validateToken);
 orderRoutes.postOrder(router, validateToken);
 orderRoutes.editOrder(router, validateToken);
 orderRoutes.deleteOrder(router, validateToken);
+// New routes
+orderRoutes.getDispatcherOrders(router, validateToken);
+orderRoutes.updateDispatcherOrderStatus(router, validateToken);
+orderRoutes.getDispatcherCompletedOrders(router, validateToken);
 
 storesRoutes.getStores(router, validateToken);
 storesRoutes.getStore(router, validateToken);
