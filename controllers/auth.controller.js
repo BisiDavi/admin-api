@@ -10,7 +10,6 @@ exports.login = async (req, res) => {
 
         if (checkEmail !== null && email === checkEmail?.email) {
             let result = {};
-            let status = 200;
             await Admin.findOne({ email }, (err, admin) => {
                 console.log('admin', admin);
                 if (!err && admin) {
@@ -30,20 +29,17 @@ exports.login = async (req, res) => {
                             console.log('super admin result', result);
                             result.token = token;
                             result.status = status;
-                            result.result = admin;
+                            result.data = admin;
                             res.status(status).send(result);
                         }
                     });
                 } else {
-                    status = 401;
-                    result.status = status;
                     result.error = 'Authentication error as an admin';
+                    res.send(err);
                 }
-                res.status(status).send(result);
             });
         } else {
             let result = {};
-            let status = 200;
             await SuperAdmin.findOne({ email }, (err, superAdmin) => {
                 console.log('superAdmin', superAdmin);
                 if (!err && superAdmin) {
@@ -67,18 +63,16 @@ exports.login = async (req, res) => {
                                 );
                                 console.log('super-admin token', token);
                                 result.token = token;
-                                result.status = status;
-                                result.result = superAdmin;
+                                result.data = superAdmin;
                                 console.log('super admin result', result);
-                                res.status(status).send(result);
+                                res.send(result);
                             }
                         });
                 } else {
-                    status = 401;
-                    result.status = status;
-                    result.error = 'Authentication error as a super admin';
+                    result.message = 'Authentication error as a super admin';
+                    result.error = err;
+                    res.send(result);
                 }
-                res.status(status).send(result);
             });
         }
     } catch (error) {
