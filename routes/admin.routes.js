@@ -15,6 +15,9 @@ const adminRoutes = {
     editAdmin: (_router, validateToken) => {
         _router.patch('/admins/:id', validateToken, adminController.edit);
     },
+		deleteAdmin: (_router, validateToken) => {
+			_router.delete('/admins/:id',)
+		}
 };
 
 module.exports = adminRoutes;

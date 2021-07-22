@@ -81,3 +81,14 @@ exports.edit = async (req, res) => {
         res.send({ error, message: 'unable to edit super admin' });
     }
 };
+
+exports.delete = async (req, res) => {
+    try {
+        const superAdmin = await SuperAdmin.deleteOne({ _id: req.params.id });
+        res.status(204).send({ message: 'deleted', superAdmin });
+    } catch (error) {
+        console.log('error', error);
+        res.status(error.status);
+        res.send({ error, message: 'unable to delete super admin' });
+    }
+};

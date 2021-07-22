@@ -73,4 +73,13 @@ exports.edit = async (req, res) => {
     }
 };
 
-
+exports.delete = async (req, res) => {
+    try {
+        const admin = await Admin.deleteOne({ _id: req.params.id });
+        res.status(204).send({ message: 'deleted', admin });
+    } catch (error) {
+        console.log('error', error);
+        res.status(error.status);
+        res.send({ error, message: 'unable to delete admin' });
+    }
+};
