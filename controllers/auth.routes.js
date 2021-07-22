@@ -4,7 +4,7 @@ const Admin = require('../models/admin')
 
 const authRoute = {
 		login: (_router) => {
-			_router.post('/auth/login',async (req,res) => {
+			_router.post('/login',async (req,res) => {
 				let result = {};
 				let status = 200;
 				try{

@@ -7,6 +7,7 @@ const dispatcherRoutes = require('./dispatcher.routes');
 const adminRoutes = require('./admin.routes');
 const superAdminRoutes = require('./superAdmin.routes');
 const orderRoutes = require('./orders.routes');
+const authRoutes = require('./auth.routes');
 const storesRoutes = require('./stores.routes');
 
 dispatcherRoutes.getDispatchers(router, validateToken);
@@ -33,5 +34,7 @@ storesRoutes.getStore(router, validateToken);
 storesRoutes.postStore(router, validateToken);
 storesRoutes.deleteStore(router, validateToken);
 storesRoutes.editStore(router, validateToken);
+
+authRoutes.login(router);
 
 module.exports = router;
