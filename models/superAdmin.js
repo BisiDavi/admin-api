@@ -13,17 +13,20 @@ const SuperAdminSchema = new Schema({
     isSuperAdmin: true,
 });
 
-AdminSchema.pre('save', function (next) {
-    const admin = this;
-    if (!admin.isModified || !admin.isNew) {
+SuperAdminSchema.pre('save', function (next) {
+    const superAdmin = this;
+    if (!superAdmin.isModified || !superAdmin.isNew) {
         next();
     } else {
-        bcrypt.hash(admin.password, 10, function (err, hash) {
+        bcrypt.hash(superAdmin.password, 10, function (err, hash) {
             if (err) {
-                console.log('Error hashing password for admin', admin.email);
+                console.log(
+                    'Error hashing password for admin',
+                    superAdmin.email,
+                );
                 next(err);
             } else {
-                admin.password = hash;
+                superAdmin.password = hash;
                 next();
             }
         });
