@@ -1,33 +1,29 @@
 const express = require('express');
 const router = express.Router();
-const {
-    getDispatchers,
-    getDispatcher,
-    postDispatcher,
-    deleteDispatcher,
-} = require('./dispatcher.routes');
-const { getAllAdmin, getAnAdmin, postAnAdmin } = require('./admin.routes');
-const {
-    getOrders,
-    getOrder,
-    postOrder,
-    editOrder,
-    deleteOrder,
-} = require('./orders.routes');
+const dispatcherRoutes = require('./dispatcher.routes');
+const adminRoutes = require('./admin.routes');
+const orderRoutes = require('./orders.routes');
+const storesRoutes = require('./stores.routes');
 
-getDispatchers(router);
-getDispatcher(router);
-postDispatcher(router);
-deleteDispatcher(router);
+dispatcherRoutes.getDispatchers(router);
+dispatcherRoutes.getDispatcher(router);
+dispatcherRoutes.postDispatcher(router);
+dispatcherRoutes.deleteDispatcher(router);
 
-getAllAdmin(router);
-getAnAdmin(router);
-postAnAdmin(router);
+adminRoutes.getAllAdmin(router);
+adminRoutes.getAnAdmin(router);
+adminRoutes.postAnAdmin(router);
 
-getOrders(router);
-getOrder(router);
-postOrder(router);
-editOrder(router);
-deleteOrder(router);
+orderRoutes.getOrders(router);
+orderRoutes.getOrder(router);
+orderRoutes.postOrder(router);
+orderRoutes.editOrder(router);
+orderRoutes.deleteOrder(router);
+
+storesRoutes.getStores(_router);
+storesRoutes.getStore(_router);
+storesRoutes.postStore(_router);
+storesRoutes.deleteStore(_router);
+storesRoutes.editStore(_router);
 
 module.exports = router;

@@ -1,74 +1,79 @@
+const bcrypt = require('bcrypt');
 const Dispatcher = require('../models/dispatcher');
 
-function getDispatchers(_router) {
-    _router.get('/dispatchers', async (req, res) => {
-        try {
-            const allDispatchers = await Dispatcher.find();
-            res.send(allDispatchers);
-        } catch (error) {
-            console.log('error', error);
-            res.status(error.status);
-            res.send({ error: error });
-        }
-    });
-}
+function dispatcherRoutes() {
+    function getDispatchers(_router) {
+        _router.get('/dispatchers', async (req, res) => {
+            try {
+                const allDispatchers = await Dispatcher.find();
+                res.send(allDispatchers);
+            } catch (error) {
+                console.log('error', error);
+                res.status(error.status);
+                res.send({ error: error });
+            }
+        });
+    }
 
-function getDispatcher(_router) {
-    _router.get('/dispatchers/:id', async (req, res) => {
-        try {
-            const dispatcher = await Dispatcher.findById({
-                _id: req.params.id,
-            });
-            res.send(dispatcher);
-        } catch (error) {
-            console.log('error', error);
-            res.status(error.status);
-            res.send({ error: error });
-        }
-    });
-}
+    function getDispatcher(_router) {
+        _router.get('/dispatchers/:id', async (req, res) => {
+            try {
+                const dispatcher = await Dispatcher.findById({
+                    _id: req.params.id,
+                });
+                res.send(dispatcher);
+            } catch (error) {
+                console.log('error', error);
+                res.status(error.status);
+                res.send({ error: error });
+            }
+        });
+    }
 
-function postDispatcher(_router) {
-    _router.post('/dispatchers', async (req, res) => {
-        try {
-            const dispatcher = new Dispatcher({
-                lastName: req.body.lastName,
-                email: req.body.email,
-                phoneNumber: req.body.phoneNumber,
-                whatsappNumber: req.body.whatsappNumber,
-                userName: req.body.userName,
-                password: req.body.password,
-                fleetBrand: req.body.fleetBrand,
-                fleetModel: req.body.fleetModel,
-                fleetColor: req.body.fleetColor,
-                fleetOwner: req.body.fleetOwner,
-            });
-            await dispatcher.save();
-            res.send(dispatcher);
-        } catch (error) {
-            console.log('error', error);
-            res.status(error.status);
-            res.send({ error, message: 'unable to create an order' });
-        }
-    });
-}
+    function postDispatcher(_router) {
+        _router.post('/dispatchers', async (req, res) => {
+            const hashedPassword = bcrypt.hash(req.body.password, 10);
+            try {
+                const dispatcher = new Dispatcher({
+                    lastName: req.body.lastName,
+                    email: req.body.email,
+                    phoneNumber: req.body.phoneNumber,
+                    whatsappNumber: req.body.whatsappNumber,
+                    userName: req.body.userName,
+                    password: hashedPassword,
+                    fleetBrand: req.body.fleetBrand,
+                    fleetModel: req.body.fleetModel,
+                    fleetColor: req.body.fleetColor,
+                    fleetOwner: req.body.fleetOwner,
+                });
+                await dispatcher.save();
+                res.send(dispatcher);
+            } catch (error) {
+                console.log('error', error);
+                res.status(error.status);
+                res.send({ error, message: 'unable to create an order' });
+            }
+        });
+    }
 
-function deleteDispatcher(_router) {
-    _router.delete('/order/:id', async (req, res) => {
-        try {
-            await Dispatcher.deleteOne({ _id: req.params.id });
-            res.status(204).send();
-        } catch (error) {
-            console.log('error', error);
-            res.status(error.status);
-            res.send({ error, message: 'unable to delete order' });
-        }
-    });
-}
+    function deleteDispatcher(_router) {
+        _router.delete('/order/:id', async (req, res) => {
+            try {
+                await Dispatcher.deleteOne({ _id: req.params.id });
+                res.status(204).send();
+            } catch (error) {
+                console.log('error', error);
+                res.status(error.status);
+                res.send({ error, message: 'unable to delete order' });
+            }
+        });
+    }
 
-module.exports = {
-    getDispatchers,
-    getDispatcher,
-    postDispatcher,
-    deleteDispatcher,
-};
+    return {
+        getDispatchers,
+        getDispatcher,
+        postDispatcher,
+        deleteDispatcher,
+    };
+}
+module.exports = dispatcherRoutes;
