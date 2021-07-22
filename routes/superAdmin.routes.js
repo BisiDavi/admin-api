@@ -1,6 +1,6 @@
 const superAdminController = require('../controllers/superAdmin.controller');
 
-const adminRoutes = {
+const superAdminRoutes = {
     getAllAdmin: (_router, validateToken) => {
         _router.get('/super-admins', validateToken, superAdminController.find);
     },
@@ -13,13 +13,9 @@ const adminRoutes = {
         );
     },
 
-    postAnAdmin: (_router, validateToken) => {
-        _router.post(
-            '/super-admins',
-            validateToken,
-            superAdminController.create,
-        );
+    postAnAdmin: (_router) => {
+        _router.post('/super-admins', superAdminController.create);
     },
 };
 
-module.exports = adminRoutes;
+module.exports = superAdminRoutes;
