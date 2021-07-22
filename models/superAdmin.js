@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const AdminSchema = new Schema({
+const SuperAdminSchema = new Schema({
     firstName: String,
     lastName: String,
     email: String,
@@ -10,6 +10,7 @@ const AdminSchema = new Schema({
     whatsappNumber: String,
     userName: String,
     password: String,
+    isSuperAdmin: true,
 });
 
 AdminSchema.pre('save', function (next) {
@@ -29,4 +30,4 @@ AdminSchema.pre('save', function (next) {
     }
 });
 
-module.exports = mongoose.model('Admin', AdminSchema);
+module.exports = mongoose.model('SuperAdmin', SuperAdminSchema);

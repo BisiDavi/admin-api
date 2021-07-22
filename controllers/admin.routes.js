@@ -1,9 +1,10 @@
 const Admin = require('../models/admin');
 
 const adminRoutes = {
-    getAllAdmin: (_router) => {
+    getAllAdmin: (_router, _validateToken) => {
         _router.get('/admins', async (req, res) => {
             try {
+                _validateToken();
                 const allAdmin = await Admin.find();
                 res.send(allAdmin);
             } catch (error) {
@@ -14,9 +15,10 @@ const adminRoutes = {
         });
     },
 
-    getAnAdmin: (_router) => {
+    getAnAdmin: (_router, _validateToken) => {
         _router.get('/admins/:id', async (req, res) => {
             try {
+                _validateToken();
                 const anAdmin = await Admin.findById({ _id: req.params.id });
                 res.send(anAdmin);
             } catch (error) {
@@ -27,8 +29,9 @@ const adminRoutes = {
         });
     },
 
-    postAnAdmin: (_router) => {
+    postAnAdmin: (_router, _validateToken) => {
         _router.post('/admins', async (req, res) => {
+            _validateToken();
             try {
                 const admin = new Admin({
                     firstName: req.body.firstName,

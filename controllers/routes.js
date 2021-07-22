@@ -1,5 +1,6 @@
 const express = require('express');
-const validateToken = require('../utils/validateToken').validateToken;v
+const validateToken = require('../utils/validateToken').validateToken;
+v;
 const router = express.Router();
 
 const dispatcherRoutes = require('./dispatcher.routes');
@@ -8,24 +9,24 @@ const orderRoutes = require('./orders.routes');
 const storesRoutes = require('./stores.routes');
 
 dispatcherRoutes.getDispatchers(router, validateToken);
-dispatcherRoutes.getDispatcher(router);
-dispatcherRoutes.postDispatcher(router);
-dispatcherRoutes.deleteDispatcher(router);
+dispatcherRoutes.getDispatcher(router, validateToken);
+dispatcherRoutes.postDispatcher(router, validateToken);
+dispatcherRoutes.deleteDispatcher(router, validateToken);
 
-adminRoutes.getAllAdmin(router);
-adminRoutes.getAnAdmin(router);
-adminRoutes.postAnAdmin(router);
+adminRoutes.getAllAdmin(router, validateToken);
+adminRoutes.getAnAdmin(router, validateToken);
+adminRoutes.postAnAdmin(router, validateToken);
 
-orderRoutes.getOrders(router);
-orderRoutes.getOrder(router);
-orderRoutes.postOrder(router);
-orderRoutes.editOrder(router);
-orderRoutes.deleteOrder(router);
+orderRoutes.getOrders(router, validateToken);
+orderRoutes.getOrder(router, validateToken);
+orderRoutes.postOrder(router, validateToken);
+orderRoutes.editOrder(router, validateToken);
+orderRoutes.deleteOrder(router, validateToken);
 
-storesRoutes.getStores(router);
-storesRoutes.getStore(router);
-storesRoutes.postStore(router);
-storesRoutes.deleteStore(router);
-storesRoutes.editStore(router);
+storesRoutes.getStores(router, validateToken);
+storesRoutes.getStore(router, validateToken);
+storesRoutes.postStore(router, validateToken);
+storesRoutes.deleteStore(router, validateToken);
+storesRoutes.editStore(router, validateToken);
 
 module.exports = router;
