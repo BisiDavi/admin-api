@@ -10,6 +10,7 @@ const SuperAdminSchema = new Schema({
     whatsappNumber: String,
     userName: String,
     password: String,
+		role: 'admin',
     isSuperAdmin: true,
 });
 
