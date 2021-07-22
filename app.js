@@ -26,7 +26,7 @@ mongoose
     });
 
 app.get('/', (req, res) => {
-    res.send('Hello world');
+    res.send('Welcome to Instadrop Admin Api');
 });
 
 app.use('/api', appRoutes);
