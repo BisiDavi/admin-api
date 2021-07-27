@@ -109,7 +109,7 @@ exports.login = async (req, res) => {
                             }
                         });
                 } else {
-                    result.message = 'Authentication error as a super admin';
+                    result.message = 'An error just occured';
                     result.error = err;
                     res.send(result);
                 }
