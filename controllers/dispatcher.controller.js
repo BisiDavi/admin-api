@@ -85,7 +85,7 @@ exports.edit = async (req, res) => {
         if (req.body.fleetPlateNumber) {
             dispatcher.fleetPlateNumber = req.body.fleetPlateNumber;
         }
-       
+
         if (req.body.fleetOwner) {
             dispatcher.fleetOwner = req.body.fleetOwner;
         }

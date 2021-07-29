@@ -15,6 +15,7 @@ module.exports = {
                 req.decoded = result;
                 next();
             } catch (error) {
+                console.log('error', error);
                 throw new Error(error);
             }
         } else {
