@@ -7,6 +7,7 @@ module.exports = {
         if (authorizationHeader) {
             const token = authorizationHeader.split(' ')[1];
             try {
+                console.log('jwt.decode', jwt.decode(token));
                 return jwt.decode(token);
             } catch (error) {
                 throw new Error(error);

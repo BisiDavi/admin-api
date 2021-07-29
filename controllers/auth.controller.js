@@ -31,8 +31,6 @@ exports.login = async (req, res) => {
                             };
                             const secret = process.env.JWT_SECRET;
                             const token = jwt.sign(payload, secret, options);
-                            console.log('admin token', token);
-                            console.log('super admin result', result);
                             result.token = token;
                             result.message = 'logged in as an admin';
                             result.data = admin;
@@ -69,8 +67,6 @@ exports.login = async (req, res) => {
                                     secret,
                                     options,
                                 );
-                                console.log('admin token', token);
-                                console.log('super admin result', result);
                                 result.message = 'logged in as a dispatcher';
                                 result.token = token;
                                 result.data = dispatcher;
@@ -103,10 +99,8 @@ exports.login = async (req, res) => {
                                     secret,
                                     options,
                                 );
-                                console.log('super-admin token', token);
                                 result.token = token;
                                 result.data = superAdmin;
-                                console.log('super admin result', result);
                                 res.send(result);
                             }
                         });

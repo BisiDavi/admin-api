@@ -30,6 +30,7 @@ exports.create = async (req, res) => {
     if (!doesEmailExit) {
         try {
             const userRole = decodeAuthToken.role;
+
             const dispatcher = new Dispatcher({
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
