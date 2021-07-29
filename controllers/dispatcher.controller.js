@@ -27,6 +27,7 @@ exports.findById = async (req, res) => {
 exports.create = async (req, res) => {
     try {
         const dispatcher = new Dispatcher({
+            firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,
             phoneNumber: req.body.phoneNumber,
@@ -36,6 +37,7 @@ exports.create = async (req, res) => {
             fleetBrand: req.body.fleetBrand,
             fleetModel: req.body.fleetModel,
             fleetColor: req.body.fleetColor,
+            fleetPlateNumber: req.body.fleetPlateNumber,
             fleetOwner: req.body.fleetOwner,
         });
         await dispatcher.save();
@@ -83,9 +85,7 @@ exports.edit = async (req, res) => {
         if (req.body.fleetPlateNumber) {
             dispatcher.fleetPlateNumber = req.body.fleetPlateNumber;
         }
-        if (req.body.fleetPlateNumber) {
-            dispatcher.fleetPlateNumber = req.body.fleetPlateNumber;
-        }
+       
         if (req.body.fleetOwner) {
             dispatcher.fleetOwner = req.body.fleetOwner;
         }
