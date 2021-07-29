@@ -22,7 +22,7 @@ exports.login = async (req, res) => {
                     bcrypt.compare(password, admin.password).then((match) => {
                         if (match) {
                             const payload = {
-                                admin: admin.email,
+                                email: admin.email,
                             };
                             const options = {
                                 expiresIn: '2d',
@@ -55,7 +55,7 @@ exports.login = async (req, res) => {
                         .then((match) => {
                             if (match) {
                                 const payload = {
-                                    dispatcher: dispatcher.email,
+                                    email: dispatcher.email,
                                 };
                                 const options = {
                                     expiresIn: '2d',
@@ -88,8 +88,7 @@ exports.login = async (req, res) => {
                         .then((match) => {
                             if (match) {
                                 const payload = {
-                                    superAdmin: superAdmin.email,
-                                    message: 'logged in as a super admin',
+                                    email: superAdmin.email,
                                 };
                                 const options = {
                                     expiresIn: '2d',
