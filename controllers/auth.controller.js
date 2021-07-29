@@ -23,6 +23,7 @@ exports.login = async (req, res) => {
                         if (match) {
                             const payload = {
                                 email: admin.email,
+                                role: 'admin',
                             };
                             const options = {
                                 expiresIn: '2d',
@@ -56,6 +57,7 @@ exports.login = async (req, res) => {
                             if (match) {
                                 const payload = {
                                     email: dispatcher.email,
+                                    role: 'dispatcher',
                                 };
                                 const options = {
                                     expiresIn: '2d',
@@ -89,6 +91,7 @@ exports.login = async (req, res) => {
                             if (match) {
                                 const payload = {
                                     email: superAdmin.email,
+                                    role: 'superAdmin',
                                 };
                                 const options = {
                                     expiresIn: '2d',
