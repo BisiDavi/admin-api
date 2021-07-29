@@ -1,5 +1,4 @@
 const dispatcherController = require('../controllers/dispatcher.controller');
-const validateToken = require('../utils/validateToken');
 
 const dispatcherRoutes = {
     getDispatchers: (_router, validateToken) => {
