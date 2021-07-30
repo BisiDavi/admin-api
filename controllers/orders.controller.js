@@ -73,7 +73,7 @@ exports.create = async (req, res) => {
             pickupVendor: req.body.pickupVendor,
             pickupContact: req.body.pickupContact,
             pickupDescription: req.body.pickupDescription,
-            deliveryAddress: req.body.deliveryAddress,
+            details: req.body.details,
             note: req.body.note,
             phoneNumber: req.body.phoneNumber,
             admin: req.body.admin,
@@ -99,8 +99,8 @@ exports.patch = async (req, res) => {
         if (req.body.pickupDescription) {
             orders.pickupDescription = req.body.pickupDescription;
         }
-        if (req.body.deliveryAddress) {
-            orders.deliveryAddress = req.body.deliveryAddress;
+        if (req.body.details) {
+            orders.details = req.body.details;
         }
         if (req.body.note) {
             orders.note = req.body.note;

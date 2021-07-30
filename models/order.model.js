@@ -6,7 +6,7 @@ const OrdersSchema = new Schema(
         pickupVendor: String,
         pickupContact: String,
         pickupDescription: String,
-        deliveryDetails: [
+        details: [
             {
                 deliveryAddress: String,
                 phoneNumber: String,
