@@ -3,7 +3,10 @@ const jwt = require('jsonwebtoken');
 module.exports = {
     validateToken: (req, res, next) => {
         const authorizationHeader = req.headers.authorization;
-        console.log('authorizationHeader', authorizationHeader);
+        const condition =
+            req.headers.authorization &&
+            req.headers.authorization.split(' ')[0] === 'Bearer';
+        console.log('authorizationHeader condition', condition);
         let result;
         if (
             req.headers.authorization &&
