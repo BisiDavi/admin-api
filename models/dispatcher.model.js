@@ -23,7 +23,7 @@ const DispatcherSchema = new Schema(
         role: { type: String, default: 'dispatcher' },
     },
     {
-        timestamps,
+        timestamps: true,
     },
 );
 

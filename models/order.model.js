@@ -29,7 +29,7 @@ const OrdersSchema = new Schema(
         },
     },
     {
-        timestamps,
+        timestamps:true
     },
 );
 

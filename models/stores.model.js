@@ -10,7 +10,7 @@ const storesSchema = new Schema(
         ordersCreated: String,
     },
     {
-        timestamps,
+        timestamps:true
     },
 );
 
