@@ -1,5 +1,4 @@
 const Admin = require('../models/admin.model');
-const decodeAuthToken = require('../utils/decodeToken').decodeToken;
 
 exports.find = async (req, res) => {
     try {

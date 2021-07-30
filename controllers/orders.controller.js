@@ -73,9 +73,9 @@ exports.create = async (req, res) => {
             pickupVendor: req.body.pickupVendor,
             pickupContact: req.body.pickupContact,
             pickupDescription: req.body.pickupDescription,
-            deliveryDetails: req.body.deliveryDetails,
+            deliveryAddress: req.body.deliveryAddress,
             note: req.body.note,
-            numberOfDeliveries: req.body.numberOfDeliveries,
+            phoneNumber: req.body.phoneNumber,
             admin: req.body.admin,
         });
         await order.save();
@@ -99,8 +99,8 @@ exports.patch = async (req, res) => {
         if (req.body.pickupDescription) {
             orders.pickupDescription = req.body.pickupDescription;
         }
-        if (req.body.deliveryDetails) {
-            orders.deliveryDetails = req.body.deliveryDetails;
+        if (req.body.deliveryAddress) {
+            orders.deliveryAddress = req.body.deliveryAddress;
         }
         if (req.body.note) {
             orders.note = req.body.note;
@@ -111,8 +111,8 @@ exports.patch = async (req, res) => {
         if (req.body.assignedDispatcherID) {
             orders.assignedDispatcherID = req.body.assignedDispatcherID;
         }
-        if (req.body.numberOfDeliveries) {
-            orders.numberOfDeliveries = req.body.numberOfDeliveries;
+        if (req.body.phoneNumber) {
+            orders.phoneNumber = req.body.phoneNumber;
         }
         if (req.body.admin) {
             orders.admin = req.body.admin;

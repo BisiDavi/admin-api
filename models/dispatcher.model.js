@@ -2,25 +2,30 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
 
-const DispatcherSchema = new Schema({
-    firstName: String,
-    lastName: String,
-    email: String,
-    phoneNumber: String,
-    whatsappNumber: String,
-    userName: String,
-    password: String,
-    fleetBrand: String,
-    fleetModel: String,
-    fleetColor: String,
-    fleetPlateNumber: String,
-    fleetOwner: String,
-    location: {
-        latitude: { type: String, default: null },
-        longitude: { type: String, default: null },
+const DispatcherSchema = new Schema(
+    {
+        firstName: String,
+        lastName: String,
+        email: String,
+        phoneNumber: String,
+        whatsappNumber: String,
+        userName: String,
+        password: String,
+        fleetBrand: String,
+        fleetModel: String,
+        fleetColor: String,
+        fleetPlateNumber: String,
+        fleetOwner: String,
+        location: {
+            latitude: { type: String, default: null },
+            longitude: { type: String, default: null },
+        },
+        role: { type: String, default: 'dispatcher' },
     },
-    role: { type: String, default: 'dispatcher' },
-});
+    {
+        timestamps,
+    },
+);
 
 DispatcherSchema.pre('save', function (next) {
     const dispatcher = this;

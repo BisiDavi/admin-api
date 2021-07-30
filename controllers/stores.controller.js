@@ -27,8 +27,10 @@ exports.create = async (req, res) => {
     try {
         const store = new Stores({
             vendorName: req.body.vendorName,
-            address: req.body.address,
             phoneNumber: req.body.phoneNumber,
+            email: req.body.email,
+            whatsapp: req.body.whatsapp,
+            ordersCreated: req.body.ordersCreated,
         });
         await store.save();
         res.send(store);
@@ -45,11 +47,17 @@ exports.edit = async (req, res) => {
         if (req.body.vendorName) {
             store.vendorName = req.body.vendorName;
         }
-        if (req.body.address) {
-            store.address = req.body.address;
+        if (req.body.email) {
+            store.email = req.body.email;
         }
         if (req.body.phoneNumber) {
             store.phoneNumber = req.body.phoneNumber;
+        }
+        if (req.body.ordersCreated) {
+            store.ordersCreated = req.body.ordersCreated;
+        }
+        if (req.body.whatsapp) {
+            store.whatsapp = req.body.whatsapp;
         }
         await store.save();
         res.send(store);
