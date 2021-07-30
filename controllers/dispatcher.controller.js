@@ -26,9 +26,6 @@ exports.findById = async (req, res) => {
 
 exports.create = async (req, res) => {
     const doesEmailExit = await Dispatcher.find({ email: req.body.email });
-    console.log('doesEmailExit', doesEmailExit);
-    console.log('req.decode', req.decode);
-    console.log('req', req);
 
     if (doesEmailExit.length === 0) {
         try {

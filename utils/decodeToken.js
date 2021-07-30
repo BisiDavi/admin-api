@@ -8,7 +8,6 @@ module.exports = {
             const token = authorizationHeader.split(' ')[1];
             try {
                 const payload = jwt.decode(token);
-                console.log('jwt.decode', jwt.decode(token));
                 req.decoded = payload;
                 next();
             } catch (error) {
