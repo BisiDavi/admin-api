@@ -9,6 +9,8 @@ const appRoutes = require('./routes');
 dotenv.config();
 const app = express();
 
+app.use(cors());
+
 app.use(express.urlencoded());
 
 app.use(express.json());
@@ -26,8 +28,6 @@ mongoose
     .catch((error) => {
         console.log('error', error);
     });
-
-app.use(cors());
 
 app.get('/api/v1', (req, res) => {
     res.send('Welcome to Instadrop Admin Api');
