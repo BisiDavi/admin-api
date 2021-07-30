@@ -27,7 +27,8 @@ exports.findById = async (req, res) => {
 
 exports.create = async (req, res) => {
     const doesEmailExit = await Dispatcher.find({ email: req.body.email });
-    if (!doesEmailExit) {
+    console.log('doesEmailExit', doesEmailExit);
+    if (doesEmailExit.length === 0) {
         try {
             const userRole = decodeAuthToken.role;
 
