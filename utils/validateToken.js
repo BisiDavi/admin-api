@@ -5,7 +5,7 @@ module.exports = {
         const authorizationHeader = req.headers.authorization;
         const authCondition =
             authorizationHeader &&
-            authorizationHeader.split(' ')[0] === 'Bearer ';
+            authorizationHeader.split(' ')[0] === 'Bearer';
         console.log('authorizationHeader condition', authCondition);
         let result;
         if (authCondition) {
