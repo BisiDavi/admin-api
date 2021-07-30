@@ -18,6 +18,7 @@ const dispatcherRoutes = {
         _router.post(
             '/dispatchers',
             validateToken,
+            decodeAuthToken,
             dispatcherController.create,
         );
     },
