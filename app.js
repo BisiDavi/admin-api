@@ -4,13 +4,10 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./json/swagger.json');
-
 const appRoutes = require('./routes');
 
 dotenv.config();
 const app = express();
-
-app.use(cors());
 
 app.use(express.urlencoded());
 
@@ -29,6 +26,8 @@ mongoose
     .catch((error) => {
         console.log('error', error);
     });
+
+app.use(cors());
 
 app.get('/api/v1', (req, res) => {
     res.send('Welcome to Instadrop Admin Api');
