@@ -3,16 +3,13 @@ const jwt = require('jsonwebtoken');
 module.exports = {
     validateToken: (req, res, next) => {
         const authorizationHeader = req.headers.authorization;
-        const condition =
-            req.headers.authorization &&
-            req.headers.authorization.split(' ')[0] === 'Bearer';
-        console.log('authorizationHeader condition', condition);
+        const authCondition =
+            authorizationHeader &&
+            authorizationHeader.split(' ')[0] === 'Bearer ';
+        console.log('authorizationHeader condition', authCondition);
         let result;
-        if (
-            req.headers.authorization &&
-            req.headers.authorization.split(' ')[0] === 'Bearer'
-        ) {
-            const token = req.headers.authorization.split(' ')[1];
+        if (authCondition) {
+            const token = authorizationHeader.split(' ')[1];
             const options = {
                 expiresIn: '2d',
                 issuer: 'https://cloudmall.africa',
