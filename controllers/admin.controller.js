@@ -24,9 +24,7 @@ exports.findById = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-    const userRole = decodeAuthToken.role;
-
-    if (userRole === 'superAdmin') {
+    if (req.decode.role === 'superAdmin') {
         try {
             const admin = new Admin({
                 firstName: req.body.firstName,
@@ -52,9 +50,7 @@ exports.create = async (req, res) => {
 };
 
 exports.edit = async (req, res) => {
-    const userRole = decodeAuthToken.role;
-
-    if (userRole === 'superAdmin') {
+    if (req.decode.role === 'superAdmin') {
         try {
             const admin = await Admin.findById({ _id: req.params.id });
             if (req.body.firstName) {
@@ -91,9 +87,7 @@ exports.edit = async (req, res) => {
 };
 
 exports.delete = async (req, res) => {
-    const userRole = decodeAuthToken.role;
-
-    if (userRole === 'superAdmin') {
+    if (req.decode.role === 'superAdmin') {
         try {
             const admin = await Admin.deleteOne({ _id: req.params.id });
             res.status(204).send({ message: 'deleted', admin });

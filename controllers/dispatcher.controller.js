@@ -1,5 +1,4 @@
 const Dispatcher = require('../models/dispatcher.model');
-const decodeAuthToken = require('../utils/decodeToken').decodeToken;
 
 exports.find = async (req, res) => {
     try {
@@ -30,8 +29,6 @@ exports.create = async (req, res) => {
     console.log('doesEmailExit', doesEmailExit);
     if (doesEmailExit.length === 0) {
         try {
-            const userRole = decodeAuthToken.role;
-            console.log('userRole', userRole);
             const dispatcher = new Dispatcher({
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
@@ -46,7 +43,10 @@ exports.create = async (req, res) => {
                 fleetPlateNumber: req.body.fleetPlateNumber,
                 fleetOwner: req.body.fleetOwner,
             });
-            if (userRole === 'admin' || userRole === 'superAdmin') {
+            if (
+                req.decode.role === 'admin' ||
+                req.decode.role === 'superAdmin'
+            ) {
                 await dispatcher.save();
                 res.send(dispatcher);
             } else {
@@ -65,9 +65,7 @@ exports.create = async (req, res) => {
 };
 
 exports.edit = async (req, res) => {
-    const userRole = decodeAuthToken.role;
-
-    if (userRole === 'admin' || userRole === 'superAdmin') {
+    if (req.decode.role === 'admin' || req.decode.role === 'superAdmin') {
         try {
             const dispatcher = await Dispatcher.findById({
                 _id: req.params.id,
@@ -124,8 +122,7 @@ exports.edit = async (req, res) => {
 
 exports.deleteOne = async (req, res) => {
     try {
-        const userRole = decodeAuthToken.role;
-        if (userRole === 'admin' || userRole === 'superAdmin') {
+        if (req.decode.role === 'admin' || req.decode.role === 'superAdmin') {
             await Dispatcher.deleteOne({ _id: req.params.id });
             res.status(204).send();
         } else {
