@@ -47,8 +47,8 @@ exports.create = async (req, res) => {
                 fleetOwner: req.body.fleetOwner,
             });
             if (
-                req.decode.role === 'admin' ||
-                req.decode.role === 'superAdmin'
+                req.decoded.role === 'admin' ||
+                req.decoded.role === 'superAdmin'
             ) {
                 await dispatcher.save();
                 res.send(dispatcher);
@@ -68,7 +68,7 @@ exports.create = async (req, res) => {
 };
 
 exports.edit = async (req, res) => {
-    if (req.decode.role === 'admin' || req.decode.role === 'superAdmin') {
+    if (req.decoded.role === 'admin' || req.decoded.role === 'superAdmin') {
         try {
             const dispatcher = await Dispatcher.findById({
                 _id: req.params.id,
@@ -125,7 +125,7 @@ exports.edit = async (req, res) => {
 
 exports.deleteOne = async (req, res) => {
     try {
-        if (req.decode.role === 'admin' || req.decode.role === 'superAdmin') {
+        if (req.decoded.role === 'admin' || req.decoded.role === 'superAdmin') {
             await Dispatcher.deleteOne({ _id: req.params.id });
             res.status(204).send();
         } else {
