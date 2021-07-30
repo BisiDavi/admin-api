@@ -7,9 +7,10 @@ module.exports = {
         if (authorizationHeader) {
             const token = authorizationHeader.split(' ')[1];
             try {
+                const payload = jwt.decode(token);
                 console.log('jwt.decode', jwt.decode(token));
+                req.decoded = payload;
                 next();
-                return jwt.decode(token);
             } catch (error) {
                 throw new Error(error);
             }
