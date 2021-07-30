@@ -31,7 +31,7 @@ exports.create = async (req, res) => {
     if (doesEmailExit.length === 0) {
         try {
             const userRole = decodeAuthToken.role;
-
+            console.log('userRole', userRole);
             const dispatcher = new Dispatcher({
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
