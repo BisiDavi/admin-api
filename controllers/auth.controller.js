@@ -4,7 +4,7 @@ const Admin = require("../models/admin.model");
 const Dispatcher = require("../models/dispatcher.model");
 const SuperAdmin = require("../models/superAdmin.model");
 
-const login = async (req, res) => {
+exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const isAdmin = await Admin.findOne({ email });
@@ -100,5 +100,3 @@ const login = async (req, res) => {
     res.send(error);
   }
 };
-
-module.exports = login;
